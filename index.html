@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Veloura Hijab</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --cream:#FFF8F4;
+    --blush:#F3DFD8;
+    --rose:#D7B8B0;
+    --mocha:#9E847A;
+    --text:#5B4D47;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--cream);
+    color:var(--text);
+}
+
+/* HEADER */
+
+header{
+    min-height:100vh;
+    background:linear-gradient(
+        rgba(255,248,244,.80),
+        rgba(255,248,244,.80)
+    ),
+    url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:80px;
+    color:var(--mocha);
+    letter-spacing:5px;
+}
+
+.hero p{
+    margin:15px 0 30px;
+    font-size:18px;
+}
+
+.btn{
+    display:inline-block;
+    background:var(--rose);
+    color:white;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:30px;
+}
+
+/* CART */
+
+#cart-icon{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:var(--rose);
+    color:white;
+    padding:12px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    z-index:999;
+    font-weight:600;
+}
+
+#cart-modal{
+    position:fixed;
+    top:80px;
+    right:20px;
+    width:340px;
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    display:none;
+    z-index:999;
+}
+
+#cart-items{
+    margin:15px 0;
+}
+
+.cart-item{
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.checkout-btn{
+    width:100%;
+    border:none;
+    background:#25D366;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+/* SECTION */
+
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:48px;
+    color:var(--mocha);
+    font-family:'Cormorant Garamond',serif;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    color:var(--mocha);
+    margin-bottom:10px;
+}
+
+.price{
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.buy-btn{
+    width:100%;
+    border:none;
+    background:var(--rose);
+    color:white;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+/* ABOUT */
+
+.about{
+    background:var(--blush);
+    padding:50px;
+    border-radius:30px;
+    text-align:center;
+}
+
+.about h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+footer{
+    background:#f7ece8;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:56px;
+}
+
+#cart-modal{
+    width:90%;
+    right:5%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- CART -->
+
+<div id="cart-icon">
+🛍️ <span id="cart-count">0</span>
+</div>
+
+<div id="cart-modal">
+
+<h3>Keranjang Belanja</h3>
+
+<div id="cart-items"></div>
+
+<p>
+<strong>
+Total: Rp <span id="cart-total">0</span>
+</strong>
+</p>
+
+<button class="checkout-btn"
+onclick="checkoutWhatsApp()">
+Checkout via WhatsApp
+</button>
+
+</div>
+
+<!-- HERO -->
+
+<header>
+
+<div class="hero">
+
+<h1>VELOURA</h1>
+
+<p>
+Elegant Hijab for Everyday Beauty
+</p>
+
+<a href="#produk" class="btn">
+Lihat Koleksi
+</a>
+
+</div>
+
+</header>
+
+<!-- PRODUK -->
+
+<section id="produk">
+
+<div class="section-title">
+<h2>Our Collection</h2>
+</div>
+
+<div class="products">
+
+<!-- 1 -->
+
+<div class="card">
+
+<img src="produk1.jpg" alt="Hijab Viscose">
+
+<div class="card-content">
+
+<h3>Hijab Viscose</h3>
+
+<p class="price">
+Rp75.000
+</p>
+
+<button
+class="buy-btn"
+onclick="addToCart('Hijab Viscose',75000)">
+Tambah ke Keranjang
+</button>
+
+</div>
+</div>
+
+<!-- 2 -->
+
+<div class="card">
+
+<img src="produk2.jpg" alt="Segi Empat Polos">
+
+<div class="card-content">
+
+<h3>Segi Empat Polos</h3>
+
+<p class="price">
+Rp65.000
+</p>
+
+<button
+class="buy-btn"
+onclick="addToCart('Segi Empat Polos',65000)">
+Tambah ke Keranjang
+</button>
+
+</div>
+</div>
+
+<!-- 3 -->
+
+<div class="card">
+
+<img src="produk3.jpg" alt="Segi Empat Corak">
+
+<div class="card-content">
+
+<h3>Segi Empat Corak</h3>
+
+<p class="price">
+Rp79.000
+</p>
+
+<button
+class="buy-btn"
+onclick="addToCart('Segi Empat Corak',79000)">
+Tambah ke Keranjang
+</button>
+
+</div>
+</div>
+
+<!-- 4 -->
+
+<div class="card">
+
+<img src="produk4.jpg" alt="Pashmina Polos">
+
+<div class="card-content">
+
+<h3>Pashmina Polos</h3>
+
+<p class="price">
+Rp69.000
+</p>
+
+<button
+class="buy-btn"
+onclick="addToCart('Pashmina Polos',69000)">
+Tambah ke Keranjang
+</button>
+
+</div>
+</div>
+
+<!-- 5 -->
+
+<div class="card">
+
+<img src="produk5.jpg" alt="Ceruti">
+
+<div class="card-content">
+
+<h3>Ceruti</h3>
+
+<p class="price">
+Rp85.000
+</p>
+
+<button
+class="buy-btn"
+onclick="addToCart('Ceruti',85000)">
+Tambah ke Keranjang
+</button>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section>
+
+<div class="about">
+
+<h2>About Veloura</h2>
+
+<p>
+Veloura menghadirkan koleksi hijab premium dengan desain elegan,
+warna lembut, dan material nyaman untuk menemani aktivitas harian
+hingga momen spesial Anda.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Veloura Hijab • Elegant • Soft • Timeless
+</footer>
+
+<script>
+
+let cart = [];
+
+document.getElementById("cart-icon").onclick = function(){
+
+let modal = document.getElementById("cart-modal");
+
+if(modal.style.display==="block"){
+modal.style.display="none";
+}else{
+modal.style.display="block";
+}
+
+}
+
+function addToCart(name,price){
+
+cart.push({
+name:name,
+price:price
+});
+
+updateCart();
+
+alert(name + " ditambahkan ke keranjang");
+
+}
+
+function updateCart(){
+
+document.getElementById("cart-count").innerText=
+cart.length;
+
+let total=0;
+let html="";
+
+cart.forEach(item=>{
+
+total += item.price;
+
+html += `
+<div class="cart-item">
+${item.name}<br>
+Rp ${item.price.toLocaleString('id-ID')}
+</div>
+`;
+
+});
+
+document.getElementById("cart-items").innerHTML=html;
+
+document.getElementById("cart-total").innerText=
+total.toLocaleString('id-ID');
+
+}
+
+function checkoutWhatsApp(){
+
+if(cart.length===0){
+
+alert("Keranjang masih kosong");
+
+return;
+
+}
+
+let pesan =
+"Halo Veloura,%0A%0ASaya ingin memesan:%0A";
+
+let total=0;
+
+cart.forEach(item=>{
+
+pesan +=
+"- " + item.name +
+" (Rp " +
+item.price.toLocaleString('id-ID') +
+")%0A";
+
+total += item.price;
+
+});
+
+pesan +=
+"%0ATotal Belanja: Rp " +
+total.toLocaleString('id-ID');
+
+window.open(
+"https://wa.me/6281234567890?text=" + pesan,
+"_blank"
+);
+
+}
+
+</script>
+
+</body>
+</html>
